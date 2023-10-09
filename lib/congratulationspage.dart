@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CongratulationsPage extends StatelessWidget {
   @override
@@ -27,153 +28,156 @@ class CongratulationsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0), // Added horizontal padding
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: 20.0),
-                      Text(
-                        'CONGRATULATIONS!!!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+        child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.0), // Added padding to all sides of text
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: 20.0),
+                    Image.asset('assets/aplus.png'), // Insert aplus.png at the top
+                    SizedBox(height: 20.0),
+                    Text(
+                      'CONGRATULATIONS!!!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'YOU HAVE SUCCESSFULLY TAKEN ACTION TO \nIMPROVE YOUR FINANCIAL FUTURE.',
+                      style: TextStyle(fontSize: 20.0),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.0),
+                    ElevatedButton(
+                      onPressed: () async {
+                        const url = 'https://smartcredit.com/join/';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF008A00),
+                        minimumSize: Size(double.infinity, 50.0),
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
-                        'You have successfully taken action to \nimprove your financial future.',
-                        style: TextStyle(fontSize: 20.0),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Navigate to SMART CREDIT or any other page you want
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF008A00),
-                          minimumSize: Size(double.infinity, 50.0),
+                      child: Text(
+                        'CREDIT SMART',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
                         ),
-                        child: Text(
-                          'SMART CREDIT',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30.0,
-                          ),
-                        ),
                       ),
-
-                      Text(
-                        '\nPlease sign up for CREDIT SMART and Generate a current Credit Report.',
-                        style: TextStyle(fontSize: 14.0),
-                        textAlign: TextAlign.center,
-                      ),
-
-                      // Heading for FAQs
-                      SizedBox(height: 20.0),
-                      Text(
-                        '\nFrequently Asked Questions ',
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
-                      ),
-
-                      // Rephrased Paragraphs
-                      SizedBox(height: 20.0),
-                      Text(
-                        'What Can be Removed?',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
-                      ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        'Our powerful system can eliminate virtually all adverse elements from your credit report, such as bankruptcies, late payments, collections, student loan delinquencies, repossessions, liens, inquiries, and incorrect addresses.',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                      SizedBox(height: 20.0),
-                      Text(
-                        'How Does It Work?',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
-                      ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        'We employ an industry-leading, multi-stage approach to boost your credit score. For each negative item, we customize our strategy. In most cases, entities reporting negative items lack a valid contract with you. Therefore, our team is legally empowered to negotiate with the agencies using our cutting-edge, proprietary formula.',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                      SizedBox(height: 20.0),
-                      Text(
-                        'How Long Does it Take?',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
-                      ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        'The time to remove negative items varies by case. We tailor our plan based on your unique situation. Typically, you\'ll start seeing results within a month, but it could take up to six months. Sign up, and our experts will provide a free credit restoration assessment, including an estimated timeframe.',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      'PLEASE SIGN UP FOR CREDIT SMART AND GENERATE A CURRENT CREDIT REPORT.',
+                      style: TextStyle(fontSize: 14.0),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'FREQUENTLY ASKED QUESTIONS\n',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'WHAT CAN BE REMOVED?\n',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+                    ),
+                    Text(
+                      'OUR POWERFUL SYSTEM CAN ELIMINATE VIRTUALLY ALL ADVERSE ELEMENTS FROM YOUR CREDIT REPORT, SUCH AS BANKRUPTCIES, LATE PAYMENTS, COLLECTIONS, STUDENT LOAN DELINQUENCIES, REPOSSESSIONS, LIENS, INQUIRIES, AND INCORRECT ADDRESSES.',
+                      style: TextStyle(fontSize: 16.0),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'HOW DOES IT WORK?\n',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+                    ),
+                    Text(
+                      'WE EMPLOY AN INDUSTRY-LEADING, MULTI-STAGE APPROACH TO BOOST YOUR CREDIT SCORE. FOR EACH NEGATIVE ITEM, WE CUSTOMIZE OUR STRATEGY. IN MOST CASES, ENTITIES REPORTING NEGATIVE ITEMS LACK A VALID CONTRACT WITH YOU. THEREFORE, OUR TEAM IS LEGALLY EMPOWERED TO NEGOTIATE WITH THE AGENCIES USING OUR CUTTING-EDGE, PROPRIETARY FORMULA.',
+                      style: TextStyle(fontSize: 16.0),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'HOW LONG DOES IT TAKE?\n',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF008A00)),
+                    ),
+                    Text(
+                      'THE TIME TO REMOVE NEGATIVE ITEMS VARIES BY CASE. WE TAILOR OUR PLAN BASED ON YOUR UNIQUE SITUATION. TYPICALLY, YOU\'LL START SEEING RESULTS WITHIN A MONTH, BUT IT COULD TAKE UP TO SIX MONTHS. SIGN UP, AND OUR EXPERTS WILL PROVIDE A FREE CREDIT RESTORATION ASSESSMENT, INCLUDING AN ESTIMATED TIMEFRAME.',
+                      style: TextStyle(fontSize: 16.0),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
-            ),
-            Container(
-              color: Color(0xFF008A00), // Green background color
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          // Handle "Terms & Conditions" button click
-                        },
-                        child: Text(
-                          'Terms & Conditions',
-                          style: TextStyle(
-                            color: Colors.white, // White text color
+              Container(
+                color: Color(0xFF008A00), // Green background color
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // Handle "Terms & Conditions" button click
+                          },
+                          child: Text(
+                            'TERMS & CONDITIONS',
+                            style: TextStyle(
+                              color: Colors.white, // White text color
+                            ),
                           ),
                         ),
-                      ),
-                      Text(' | ', style: TextStyle(color: Colors.white)),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/congratulations');
-                        },
-                        child: Text(
-                          'Privacy Policy',
-                          style: TextStyle(
-                            color: Colors.white, // White text color
+                        Text(' | ', style: TextStyle(color: Colors.white)),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/congratulations');
+                          },
+                          child: Text(
+                            'PRIVACY POLICY',
+                            style: TextStyle(
+                              color: Colors.white, // White text color
+                            ),
                           ),
                         ),
-                      ),
-                      Text(' | ', style: TextStyle(color: Colors.white)),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/congratulations');
-                        },
-                        child: Text(
-                          'Disclaimer',
-                          style: TextStyle(
-                            color: Colors.white, // White text color
+                        Text(' | ', style: TextStyle(color: Colors.white)),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/congratulations');
+                          },
+                          child: Text(
+                            'DISCLAIMER',
+                            style: TextStyle(
+                              color: Colors.white, // White text color
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.0),
-                  Text(
-                    '© 2023 A Plus Credit LLC\nAll Rights Reserved | Privacy Policy',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white, // White text color
+                      ],
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10.0),
+                    Text(
+                      '© 2023 A PLUS CREDIT LLC\nALL RIGHTS RESERVED | PRIVACY POLICY',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white, // White text color
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

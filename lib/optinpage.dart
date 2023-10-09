@@ -13,6 +13,7 @@ class _OptInPageState extends State<OptInPage> {
   @override
   Widget build(BuildContext context) {
     final isLargeScreen = MediaQuery.of(context).size.width > 600;
+    final isMobile = MediaQuery.of(context).size.width <= 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +22,7 @@ class _OptInPageState extends State<OptInPage> {
             'BECOME APPROVAL READY FOR A HOME OR HIGH-LIMIT CREDIT CARD!',
             style: TextStyle(
               color: Color(0xFFFFFFFF),
-              fontSize: 20.0,
+              fontSize: isMobile ? 20.0 : 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -29,10 +30,10 @@ class _OptInPageState extends State<OptInPage> {
         centerTitle: true,
         backgroundColor: Color(0xFF008A00),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(0.5),
+          preferredSize: Size.fromHeight(1.0),
           child: Container(
             color: Color(0xFFFFFFFF),
-            height: 0.5,
+            height: 1.0,
           ),
         ),
       ),
@@ -41,7 +42,7 @@ class _OptInPageState extends State<OptInPage> {
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              if (!isLargeScreen)
+              if (isMobile)
                 Column(
                   children: <Widget>[
                     Container(
@@ -53,14 +54,11 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     SizedBox(height: 20.0),
-                    if (!isLargeScreen) // Only show this image on small screens
-                      Image.asset('assets/score.png'),
-                    SizedBox(height: 20.0),
                     Text(
                       'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: isLargeScreen ? 33.0 : 18.0,
+                        fontSize: isMobile ? 33.0 : 18.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF008A00),
                       ),
@@ -78,67 +76,39 @@ class _OptInPageState extends State<OptInPage> {
                         'FREE CREDIT CONSULTATION!',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: isLargeScreen ? 33.0 : 18.0,
+                          fontSize: isMobile ? 18.0 : 33.0,
                         ),
                       ),
                     ),
                   ],
                 ),
+              SizedBox(height: isMobile ? 0 : 20.0), // Add space in non-mobile view
               Row(
                 children: <Widget>[
-                  if (isLargeScreen)
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            width: double.infinity,
-                            child: Image.asset(
-                              'assets/aplus.png',
-                              width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(height: 20.0),
-                          Text(
-                            'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 33.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF008A00),
-                            ),
-                          ),
-                          SizedBox(height: 10.0),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed('/congratulations');
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF008A00),
-                            ),
-                            child: Text(
-                              'FREE CREDIT CONSULTATION!',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 33.0,
-                                color: Colors.white,
+                  Expanded(
+                    flex: isMobile ? 0 : 1, // Don't expand in mobile view
+                    child: !isMobile
+                        ? Column(
+                            children: <Widget>[
+                              Container(
+                                width: double.infinity,
+                                child: Image.asset(
+                                  'assets/aplus.png',
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                              SizedBox(height: 20.0),
+                            ],
+                          )
+                        : SizedBox(), // Hide in non-mobile view
+                  ),
                   Expanded(
                     flex: 1,
-                    child: !isLargeScreen
-                        ? SizedBox() // Empty container to occupy space instead of the image
-                        : Image.asset('assets/score.png'), // Keep this for large screens
+                    child: Image.asset('assets/score.png'),
                   ),
                 ],
               ),
-
-
 
               SizedBox(height: 20.0),
               Container(
@@ -165,7 +135,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      'Yes, this call is for you, especially if you...',
+                      'YES, THIS CALL IS FOR YOU, ESPECIALLY IF YOU...',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18.0,
@@ -175,7 +145,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 20.0),
                     Text(
-                      '- Are sick and tired of living with bad credit and not seeing your credit score go up.\n',
+                      '- ARE SICK AND TIRED OF LIVING WITH BAD CREDIT AND NOT SEEING YOUR CREDIT SCORE GO UP.\n',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -183,7 +153,7 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     Text(
-                      '- Have tried fixing your credit in the past and saw no results.\n',
+                      '- HAVE TRIED FIXING YOUR CREDIT IN THE PAST AND SAW NO RESULTS.\n',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -191,7 +161,7 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     Text(
-                      "- Are tired of paying monthly fees to credit companies that lack communication.\n",
+                      "- ARE TIRED OF PAYING MONTHLY FEES TO CREDIT COMPANIES THAT LACK COMMUNICATION.\n",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -199,7 +169,7 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     Text(
-                      "- Want to improve your credit so you can finally get approved for your dream house or get the capital you need to start or scale your business.\n",
+                      "- WANT TO IMPROVE YOUR CREDIT SO YOU CAN FINALLY GET APPROVED FOR YOUR DREAM HOUSE OR GET THE CAPITAL YOU NEED TO START OR SCALE YOUR BUSINESS.\n",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -207,7 +177,7 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     Text(
-                      "- Want a done-for-you credit repair team who will work on your credit every month until your inaccurate negative accounts are removed from your credit report.\n",
+                      "- WANT A DONE-FOR-YOU CREDIT REPAIR TEAM WHO WILL WORK ON YOUR CREDIT EVERY MONTH UNTIL YOUR INACCURATE NEGATIVE ACCOUNTS ARE REMOVED FROM YOUR CREDIT REPORT.\n",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -215,7 +185,7 @@ class _OptInPageState extends State<OptInPage> {
                       ),
                     ),
                     Text(
-                      "- Are looking to buy a house within 6 - 12 months and need a score boost.\n",
+                      "- ARE LOOKING TO BUY A HOUSE WITHIN 6 - 12 MONTHS AND NEED A SCORE BOOST.\n",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -258,7 +228,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      "If this sounds too good to be true, then we personally invite you to book a credit consultation, and we'll prove it to you.",
+                      "IF THIS SOUNDS TOO GOOD TO BE TRUE, THEN WE PERSONALLY INVITE YOU TO BOOK A CREDIT CONSULTATION, AND WE'LL PROVE IT TO YOU.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18.0,
@@ -360,7 +330,7 @@ class _OptInPageState extends State<OptInPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'THIS IS YOUR DEFINING MOMENT!\nBecome Apart of The A+ Credit Family!',
+                      'THIS IS YOUR DEFINING MOMENT!\nBECOME APART OF THE A+ CREDIT FAMILY!',
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -388,9 +358,9 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      'We offer a 100% money back guarantee within 120 Days if\n'
-                      'you do not see any type of results within 120 days of starting\n'
-                      'the "A+ Credit Program".',
+                      'WE OFFER A 100% MONEY BACK GUARANTEE WITHIN 120 DAYS IF\n'
+                      'YOU DO NOT SEE ANY TYPE OF RESULTS WITHIN 120 DAYS OF STARTING\n'
+                      'THE "A+ CREDIT PROGRAM".',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -398,7 +368,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      '© 2023 A Plus Credit LLC\nAll Rights Reserved | Privacy Policy',
+                      '© 2023 A PLUS CREDIT LLC\nALL RIGHTS RESERVED | PRIVACY POLICY',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -406,21 +376,21 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      'Disclaimer:\n'
-                      'This site is not a part of the Facebook website or Facebook Inc.\n'
-                      'Additionally, This site is NOT endorsed by Facebook in any way.\n'
-                      'FACEBOOK is a trademark of FACEBOOK, Inc.\n'
+                      'DISCLAIMER:\n'
+                      'THIS SITE IS NOT A PART OF THE FACEBOOK WEBSITE OR FACEBOOK INC.\n'
+                      'ADDITIONALLY, THIS SITE IS NOT ENDORSED BY FACEBOOK IN ANY WAY.\n'
+                      'FACEBOOK IS A TRADEMARK OF FACEBOOK, INC.\n'
                       '\n'
-                      'Credit Repair Results Disclaimer:\n'
-                      'Results may vary and testimonials are not claimed to represent typical results.\n'
-                      'We do not claim you will receive a 700 credit score, nor do we make a guarantee.\n'
-                      '*Our 120 day money back guarantee is only if we see no type of deletions of negative items such as inquiries, collections, charged offs, etc. within the first 120 days of start date.\n'
-                      'All testimonials are real. These results are meant as a showcase of the best credit repair results we have done & should not be taken as average or typical results.\n'
+                      'CREDIT REPAIR RESULTS DISCLAIMER:\n'
+                      'RESULTS MAY VARY AND TESTIMONIALS ARE NOT CLAIMED TO REPRESENT TYPICAL RESULTS.\n'
+                      'WE DO NOT CLAIM YOU WILL RECEIVE A 700 CREDIT SCORE, NOR DO WE MAKE A GUARANTEE.\n'
+                      '*OUR 120 DAY MONEY BACK GUARANTEE IS ONLY IF WE SEE NO TYPE OF DELETIONS OF NEGATIVE ITEMS SUCH AS INQUIRIES, COLLECTIONS, CHARGED OFFS, ETC. WITHIN THE FIRST 120 DAYS OF START DATE.\n'
+                      'ALL TESTIMONIALS ARE REAL. THESE RESULTS ARE MEANT AS A SHOWCASE OF THE BEST CREDIT REPAIR RESULTS WE HAVE DONE & SHOULD NOT BE TAKEN AS AVERAGE OR TYPICAL RESULTS.\n'
                       '\n'
-                      'You should perform your own due diligence & use your own best judgment prior\n'
-                      'to making any investment decision pertaining to your credit.\n'
-                      'By virtue of visiting this site or interacting with any portion of this site, you agree\n'
-                      'that you’re fully responsible for the investments you make & any outcomes that may result.',
+                      'YOU SHOULD PERFORM YOUR OWN DUE DILIGENCE & USE YOUR OWN BEST JUDGMENT PRIOR\n'
+                      'TO MAKING ANY INVESTMENT DECISION PERTAINING TO YOUR CREDIT.\n'
+                      'BY VIRTUE OF VISITING THIS SITE OR INTERACTING WITH ANY PORTION OF THIS SITE, YOU AGREE\n'
+                      'THAT YOU’RE FULLY RESPONSIBLE FOR THE INVESTMENTS YOU MAKE & ANY OUTCOMES THAT MAY RESULT.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -435,7 +405,7 @@ class _OptInPageState extends State<OptInPage> {
                             // Handle "Terms & Conditions" button click
                           },
                           child: Text(
-                            'Terms & Conditions',
+                            'TERMS & CONDITIONS',
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -447,7 +417,7 @@ class _OptInPageState extends State<OptInPage> {
                             // Handle "Privacy Policy" button click
                           },
                           child: Text(
-                            'Privacy Policy',
+                            'PRIVACY POLICY',
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -459,7 +429,7 @@ class _OptInPageState extends State<OptInPage> {
                             // Handle "Disclaimer" button click
                           },
                           child: Text(
-                            'Disclaimer',
+                            'DISCLAIMER',
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -477,3 +447,4 @@ class _OptInPageState extends State<OptInPage> {
     );
   }
 }
+
