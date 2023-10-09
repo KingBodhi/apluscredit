@@ -22,7 +22,7 @@ class _OptInPageState extends State<OptInPage> {
             'BECOME APPROVAL READY FOR A HOME OR HIGH-LIMIT CREDIT CARD!',
             style: TextStyle(
               color: Color(0xFFFFFFFF),
-              fontSize: isMobile ? 20.0 : 30.0,
+              fontSize: isMobile ? 30.0 : 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -42,6 +42,60 @@ class _OptInPageState extends State<OptInPage> {
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
+              // Hero Section
+              if (isLargeScreen)
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            width: double.infinity,
+                            child: Image.asset(
+                              'assets/aplus.png',
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(height: 20.0),
+                          Text(
+                            'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 33.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF008A00),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/congratulations');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF008A00),
+                            ),
+                            child: Text(
+                              'FREE CREDIT CONSULTATION!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 33.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset('assets/score.png'),
+                    ),
+                  ],
+                ),
+
+              // Small Screen Layout
               if (isMobile)
                 Column(
                   children: <Widget>[
@@ -53,12 +107,12 @@ class _OptInPageState extends State<OptInPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 10.0),
                     Text(
                       'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: isMobile ? 33.0 : 18.0,
+                        fontSize: 33.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF008A00),
                       ),
@@ -70,47 +124,23 @@ class _OptInPageState extends State<OptInPage> {
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF008A00),
-                        minimumSize: Size(double.infinity, 50.0),
                       ),
                       child: Text(
                         'FREE CREDIT CONSULTATION!',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
+                          fontSize: 33.0,
                           color: Colors.white,
-                          fontSize: isMobile ? 18.0 : 33.0,
                         ),
                       ),
                     ),
+                    SizedBox(height: 20.0),
+                    Image.asset('assets/score.png'),
                   ],
                 ),
-              SizedBox(height: isMobile ? 0 : 20.0), // Add space in non-mobile view
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: isMobile ? 0 : 1, // Don't expand in mobile view
-                    child: !isMobile
-                        ? Column(
-                            children: <Widget>[
-                              Container(
-                                width: double.infinity,
-                                child: Image.asset(
-                                  'assets/aplus.png',
-                                  width: MediaQuery.of(context).size.width,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(height: 20.0),
-                            ],
-                          )
-                        : SizedBox(), // Hide in non-mobile view
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Image.asset('assets/score.png'),
-                  ),
-                ],
-              ),
 
-              SizedBox(height: 20.0),
+
+              SizedBox(height: isMobile ? 0 : 20.0), // Add space in non-mobile view
               Container(
                 color: Color(0xFF008A00),
                 padding: EdgeInsets.all(10.0),
@@ -250,7 +280,7 @@ class _OptInPageState extends State<OptInPage> {
                 ),
               ),
               SizedBox(height: 10.0),
-              if (isLargeScreen)
+              if (!isMobile)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -268,7 +298,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                   ],
                 ),
-              if (!isLargeScreen)
+              if (isMobile)
                 Column(
                   children: <Widget>[
                     Image.asset(
@@ -287,7 +317,7 @@ class _OptInPageState extends State<OptInPage> {
                   ],
                 ),
               SizedBox(height: 20.0),
-              if (isLargeScreen)
+              if (!isMobile)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -305,7 +335,7 @@ class _OptInPageState extends State<OptInPage> {
                     ),
                   ],
                 ),
-              if (!isLargeScreen)
+              if (isMobile)
                 Column(
                   children: <Widget>[
                     Image.asset(
@@ -447,4 +477,3 @@ class _OptInPageState extends State<OptInPage> {
     );
   }
 }
-
