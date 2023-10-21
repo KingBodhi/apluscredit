@@ -22,7 +22,7 @@ class _OptInPageState extends State<OptInPage> {
             'BECOME APPROVAL READY FOR A HOME OR HIGH-LIMIT CREDIT CARD!',
             style: TextStyle(
               color: Color(0xFFFFFFFF),
-              fontSize: isMobile ? 30.0 : 30.0,
+              fontSize: isMobile ? 15.0 : 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -71,7 +71,7 @@ class _OptInPageState extends State<OptInPage> {
                           SizedBox(height: 10.0),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/congratulations');
+                              Navigator.of(context).pushNamed('/surveypage');
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xFF008A00),
@@ -120,7 +120,7 @@ class _OptInPageState extends State<OptInPage> {
                     SizedBox(height: 10.0),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/congratulations');
+                        Navigator.of(context).pushNamed('/surveypage');
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF008A00),
@@ -371,7 +371,7 @@ class _OptInPageState extends State<OptInPage> {
                     SizedBox(height: 10.0),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/congratulations');
+                        Navigator.of(context).pushNamed('/surveypage');
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,

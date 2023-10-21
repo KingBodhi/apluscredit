@@ -11,7 +11,7 @@ class CongratulationsPage extends StatelessWidget {
             'THANK YOU FOR TRUSTING A+ CREDIT',
             style: TextStyle(
               color: Color(0xFFFFFFFF),
-              fontSize: 20.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.bold,
             ),
           ),

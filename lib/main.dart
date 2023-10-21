@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'optinpage.dart'; // Import the OptInPage widget
 import 'congratulationspage.dart'; // Import the CongratulationsPage widget
-
+import 'surveypage.dart'; // Import the SurveyPage widget
 
 void main() {
   runApp(MyApp());
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => OptInPage(),
         '/congratulations': (context) => CongratulationsPage(),
+        '/surveypage': (context) => SurveyPage(), // Add the SurveyPage route
       },
     );
   }
