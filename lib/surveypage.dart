@@ -108,6 +108,7 @@ class _SurveyPageState extends State<SurveyPage> {
                   SizedBox(height: 20.0),
                   Text(
                     'Please provide your information:',
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
                   ),
                   SizedBox(height: 20.0),

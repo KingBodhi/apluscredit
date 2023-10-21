@@ -58,6 +58,15 @@ class _OptInPageState extends State<OptInPage> {
                               fit: BoxFit.cover,
                             ),
                           ),
+                                                  Container(
+                          width: double.infinity,
+                          color: Colors.white, // White background
+                          child: Image.asset(
+                            'assets/credit.webp',
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                           SizedBox(height: 20.0),
                           Text(
                             'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
@@ -107,6 +116,15 @@ class _OptInPageState extends State<OptInPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
+                                            Container(
+                          width: double.infinity,
+                          color: Colors.white, // White background
+                          child: Image.asset(
+                            'assets/credit.webp',
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                     SizedBox(height: 10.0),
                     Text(
                       'ARE YOU READY TO BECOME\nAPPROVAL READY!?',
