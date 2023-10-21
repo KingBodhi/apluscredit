@@ -39,6 +39,18 @@ class CongratulationsPage extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 20.0),
                     Image.asset('assets/aplus.png'), // Insert aplus.png at the top
+
+                        Container(
+                          width: double.infinity,
+                          color: Colors.white, // White background
+                          child: Image.asset(
+                            'assets/credit.webp',
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+
                     SizedBox(height: 20.0),
                     Text(
                       'CONGRATULATIONS!!!',

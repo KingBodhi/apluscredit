@@ -25,7 +25,7 @@ class _SurveyPageState extends State<SurveyPage> {
             'YOUR PARTNER IN CREDIT',
             style: TextStyle(
               color: Color(0xFFFFFFFF),
-              fontSize: isMobile ? 30.0 : 15.0,
+              fontSize: isMobile ? 15.0 : 30.0,
               fontWeight: FontWeight.bold,
             ),
           ),
